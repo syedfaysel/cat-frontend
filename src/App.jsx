@@ -1,17 +1,19 @@
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './router'
 
-import './App.css'
-import Test from "@/components/Test"
+import DefaultLoader from '@/components/loader/deafult-loader'
+
+
+
 
 function App() {
 
 
   return (
-    <>
-      <div>
-        <Test></Test>
-      </div>
-    </>
+    <Suspense fallback={<DefaultLoader/>}>
+      <RouterProvider router={router} />
+    </Suspense>
   )
 }
 
