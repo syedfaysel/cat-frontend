@@ -1,6 +1,7 @@
 export const routesConstant = {
-  testPage: "test-page",
+  login: "login",
   profile: "profile",
   wishList: "wishlist",
   exploreCats: "explore-cats",
+
 }
