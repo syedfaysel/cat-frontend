@@ -15,7 +15,7 @@ const MainLayout = () => {
       <div className="no-scrollbar overflow-y-auto">
         {/* sidebar goes here */}
       </div>
-      <div className="mx-12 my-5 min-h-[70vh]">
+      <div className="mx-3 md:mx-12 my-5 min-h-[70vh]">
         <Outlet />
       </div>
       <div className="col-span-2 z-40">
