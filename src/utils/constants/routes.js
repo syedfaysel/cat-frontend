@@ -5,5 +5,6 @@ export const routesConstant = {
   exploreCats: "explore-cats",
   catPosts: "cat-posts",
   shelters: "shelters",
+  events: "events",
 
 }
