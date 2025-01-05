@@ -3,11 +3,13 @@ import { Link, useParams } from "react-router-dom"; // For React Router
 import { useGetCatPostByIdQuery, useAddRequestToPostMutation } from "@/redux/catPost/catPostApi"; // Assuming you have this query set up
 import DefaultLoader from "@/components/loader/deafult-loader";
 import { toast } from 'react-toastify';
+import { useAddToWishListMutation } from "@/redux/user/userApi";
 
 const CatPostDetails = () => {
   const { id } = useParams(); // Get the post ID from the URL
   const { data, error, isLoading } = useGetCatPostByIdQuery(id); // Fetch the specific post
   const [addRequest, { isLoading: isRequestLoading, isSuccess }] = useAddRequestToPostMutation();
+  const [addToWishList, { isLoading: isWishlistLoading, isAddToWishSuccess }] = useAddToWishListMutation();
 
 
   const handleRequest = async () => {
@@ -16,6 +18,15 @@ const CatPostDetails = () => {
       toast.success('Request sent successfully!');
     } catch (err) {
       toast.error(`Failed to send request: You might have alreay requested`);
+    }
+  };
+
+  const handleAddToWishLilst = async () => {
+    try {
+      await addToWishList({ postId: id}).unwrap();
+      toast.success('Added To Wishlist');
+    } catch (err) {
+      toast.error(`Failed to add to wishlist`);
     }
   };
 
@@ -113,9 +124,16 @@ const CatPostDetails = () => {
             <Link to={`/user/${catPost.currentOwner._id}`} className="mb-4 text-base text-gray-700">{catPost.currentOwner.username}</Link>
           </div>
         </div>
-        <button className="btn btn-secondary" onClick={handleRequest} disabled={isRequestLoading}>
-          Want to {postType === "adoption" ? "Adopt" : "Buy"}
-        </button>
+
+        {/* action */}
+        <div className="flex justify-around">
+          <button className="btn btn-secondary" onClick={handleRequest} disabled={isRequestLoading}>
+            Want to {postType === "adoption" ? "Adopt" : "Buy"}
+          </button>
+          <button className="btn btn-outline" onClick={handleAddToWishLilst} disabled={isWishlistLoading}>
+            Add to Wishlist
+          </button>
+        </div>
       </div>
     </div>
   );

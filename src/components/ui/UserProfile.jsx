@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const UserProfile = ({ user }) => {
-  // console.log(user);
+  console.log(user);  
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-xl font-bold">User Profile</h1>
@@ -39,9 +39,9 @@ const UserProfile = ({ user }) => {
         <h2 className="text-lg font-bold">Wishlist</h2>
         {/* Map through wishlist items */}
         <div>
-          {user?.wishlist?.map((cat, index) => (
+          {user?.wishlist?.map((catPost, index) => (
             <div key={index}>
-              <Link to={`/explore-cats/${cat._id}`}>{cat.name}</Link>
+              <Link to={`/cat-posts/${catPost._id}`} className="link text-pink-500">{catPost.postTitle}</Link>
             </div>
           ))}
         </div>
