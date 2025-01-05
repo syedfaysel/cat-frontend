@@ -6,5 +6,6 @@ export const routesConstant = {
   catPosts: "cat-posts",
   shelters: "shelters",
   events: "events",
+  user: "user"
 
 }
