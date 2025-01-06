@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { routesConstant } from "@/utils/constants/routes";
 import { lazy } from "react";
+import Catposts from "@/featureComponents/user/catposts";
 
 
 // lazy load all the component and pages
@@ -20,6 +21,10 @@ const EventPage = lazy(()=> import("@/pages/main/events"));
 const EventDetails = lazy(()=> import("@/components/eventDetails"));
 const Profile = lazy(()=> import("@/pages/main/profile"));
 const User = lazy(()=> import("@/pages/main/user"));
+const ProfileLayout = lazy(()=> import("@/layouts/profile-layout"));
+const UserCats = lazy(()=> import("@/featureComponents/user/cats"));
+const Wishlist = lazy(() => import("@/featureComponents/user/wishlist"));
+const CatpostRequests = lazy(() => import("@/featureComponents/user/catpostRequest"));
 
 
 
@@ -77,7 +82,26 @@ export const router = createBrowserRouter([
       },
       {
         path: `${routesConstant.profile}`,
-        element: <Profile />,
+        element: <ProfileLayout />,
+        children: [
+          // {index: true, element: <ProfileOption/>}
+          {
+            path: "cats",
+            element: <UserCats /> 
+          },
+          {
+            path: "cat-posts",
+            element: <Catposts /> 
+          },
+          {
+            path: "wishlist",
+            element: <Wishlist />
+          },
+          {
+            path: "catpost-requests",
+            element: <CatpostRequests />
+          },
+        ]
       },
       {
         path: `${routesConstant.user}/:id`,

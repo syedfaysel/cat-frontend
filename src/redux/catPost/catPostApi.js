@@ -21,6 +21,13 @@ export const catPostApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["CatPost"], // Cache the list of Bank accounts
     }),
+    getCatPostsByUserId: builder.query({
+      query: (id) => ({
+        url: `${baseEndpoints.catPosts}/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["CatPost"], // Cache the list of Bank accounts
+    }),
     getAllCatPosts: builder.query({
       query: () => ({
         url: `${baseEndpoints.catPosts}`,
