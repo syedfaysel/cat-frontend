@@ -44,7 +44,7 @@ const EventDetails = () => {
 
       {/* carousel */}
       
-      <Carousel/>
+      <Carousel images={event.images} />
 
       <div className="text-gray-700">
         <div className="mb-3 text-xs font-semibold tracking-wide uppercase">
